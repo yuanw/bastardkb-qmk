@@ -258,6 +258,13 @@ void shutdown_user(void) {
 #endif // RGB_MATRIX_ENABLE
 }
 
+
+// Thumb Combos
+#define COMBO_COUNT 9
+#define COMBO_TERM 200
+#define EXTRA_SHORT_COMBOS
+uint16_t COMBO_LEN = 9;
+
 enum combos {
   FD_B,
   LU_J,
