@@ -261,7 +261,6 @@ void shutdown_user(void) {
 
 // Thumb Combos
 #define COMBO_COUNT 9
-#define COMBO_TERM 200
 #define EXTRA_SHORT_COMBOS
 uint16_t COMBO_LEN = 9;
 
@@ -284,7 +283,7 @@ const uint16_t PROGMEM lcbr_combo[] = {LCTL_T(KC_N), KC_COMM, COMBO_END};
 const uint16_t PROGMEM rcbr_combo[] = {LCTL_T(KC_N), KC_DOT, COMBO_END};
 const uint16_t PROGMEM lbrc_combo[] = {LALT_T(KC_S), KC_COMM, COMBO_END};
 const uint16_t PROGMEM rbrc_combo[] = {LALT_T(KC_S), KC_DOT, COMBO_END};
-const uint16_t PROGMEM left_combo[] = {SPC_NAV, TAB_FUN, COMBO_END};
+const uint16_t PROGMEM left_combo[] = {KC_W, KC_M, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [FD_B] = COMBO(b_combo, KC_B),
