@@ -285,6 +285,7 @@ const uint16_t PROGMEM lbrc_combo[] = {LALT_T(KC_S), KC_COMM, COMBO_END};
 const uint16_t PROGMEM rbrc_combo[] = {LALT_T(KC_S), KC_DOT, COMBO_END};
 const uint16_t PROGMEM left_combo[] = {KC_W, KC_M, COMBO_END};
 
+
 combo_t key_combos[COMBO_COUNT] = {
   [FD_B] = COMBO(b_combo, KC_B),
   [LU_J] = COMBO(j_combo, KC_J),
