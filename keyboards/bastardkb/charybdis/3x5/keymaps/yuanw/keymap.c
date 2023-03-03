@@ -97,7 +97,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 #define LAYOUT_LAYER_FUNCTION                                                                 \
     _______________DEAD_HALF_ROW_______________, KC_PSCR,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
-    ______________HOME_ROW_GACS_L______________, KC_SLCK,   LAG(KC_1),       LAG(KC_2),       LAG(KC_3),       LAG(KC_4), \
+    ______________HOME_ROW_GACS_L______________, KC_SLCT,   LAG(KC_1),       LAG(KC_2),       LAG(KC_3),       LAG(KC_4), \
     _______________DEAD_HALF_ROW_______________, KC_PAUS,   LSG(KC_1),       LSG(KC_2),       LSG(KC_3),       LSG(KC_4), \
                       XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
 /**
