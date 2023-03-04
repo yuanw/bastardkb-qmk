@@ -355,7 +355,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         return false;
                 }
             }
-        case REDO:
+        case RDO:
             if (record->event.pressed) {
                 switch (detected_host_os()) {
                     case OS_MACOS: // On Mac, set default layer to BASE_MAC.
