@@ -294,75 +294,67 @@ const uint16_t PROGMEM left_combo[] = {KC_W, KC_M, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
     [FD_B] = COMBO(b_combo, KC_B), [LU_J] = COMBO(j_combo, KC_J), [MP_Q] = COMBO(q_combo, KC_Q), [KCOMM_Z] = COMBO(z_combo, KC_Z), [LEFT_TAB] = COMBO(left_combo, KC_TAB),
 };
-
+/*   #define U_RDO KC_AGIN */
+/*   #define U_PST KC_PSTE */
+/*   #define U_CPY KC_COPY */
+/*   #define U_CUT KC_CUT */
+/*   #define U_UND KC_UNDO */
+/* #elif defined (MIRYOKU_CLIPBOARD_MAC) */
+/*   #define U_RDO SCMD(KC_Z) */
+/*   #define U_PST LCMD(KC_V) */
+/*   #define U_CPY LCMD(KC_C) */
+/*   #define U_CUT LCMD(KC_X) */
+/*   #define U_UND LCMD(KC_Z) */
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case COPY:
+        case CPY:
             if (record->event.pressed) {
                 switch (detected_host_os()) {
-                    case OS_UNSURE: // Don't change default layer if unsure.
-                        break;
                     case OS_MACOS: // On Mac, set default layer to BASE_MAC.
                     case OS_IOS:
-                        set_single_persistent_default_layer(BASE_MAC);
-                        break;
-                    default: // On Windows and Linux, set to BASE_WIN.
-                        set_single_persistent_default_layer(BASE_WIN);
-                        break;
+                        tap_code16(LCMD(KC_C));
+                        return false;
+                    default:
+                        tap_code16( KC_COPY );
+                        return false;
                 }
-
-                if (isLinux) {
-                    tap_code16(LCTL(KC_C));
-                } else {
-                    tap_code16(LGUI(KC_C));
-                }
-                return false;
             }
-        case PASTE:
-            if (record->event.pressed) {
-                if (isLinux) {
-                    tap_code16(LCTL(KC_V));
-                } else {
-                    tap_code16(LGUI(KC_V));
-                }
-                return false;
-            }
-        case CUT:
-            if (record->event.pressed) {
-                if (isLinux) {
-                    tap_code16(LCTL(KC_X));
-                } else {
-                    tap_code16(LGUI(KC_X));
-                }
-                return false;
-            }
-        case UNDO:
-            if (record->event.pressed) {
-                if (isLinux) {
-                    tap_code16(LCTL(KC_Z));
-                } else {
-                    tap_code16(LGUI(KC_Z));
-                }
-                return false;
-            }
-        case REDO:
-            if (record->event.pressed) {
-                if (isLinux) {
-                    tap_code16(LCTL(KC_Y));
-                } else {
-                    tap_code16(LSG(KC_Z));
-                }
-                return false;
-            }
-        case SALL:
-            if (record->event.pressed) {
-                if (isLinux) {
-                    tap_code16(LCTL(KC_A));
-                } else {
-                    tap_code16(LGUI(KC_A));
-                }
-                return false;
-            }
+        /* case PASTE: */
+        /*     if (record->event.pressed) { */
+        /*         if (isLinux) { */
+        /*             tap_code16(LCTL(KC_V)); */
+        /*         } else { */
+        /*             tap_code16(LGUI(KC_V)); */
+        /*         } */
+        /*         return false; */
+        /*     } */
+        /* case CUT: */
+        /*     if (record->event.pressed) { */
+        /*         if (isLinux) { */
+        /*             tap_code16(LCTL(KC_X)); */
+        /*         } else { */
+        /*             tap_code16(LGUI(KC_X)); */
+        /*         } */
+        /*         return false; */
+        /*     } */
+        /* case UNDO: */
+        /*     if (record->event.pressed) { */
+        /*         if (isLinux) { */
+        /*             tap_code16(LCTL(KC_Z)); */
+        /*         } else { */
+        /*             tap_code16(LGUI(KC_Z)); */
+        /*         } */
+        /*         return false; */
+        /*     } */
+        /* case REDO: */
+        /*     if (record->event.pressed) { */
+        /*         if (isLinux) { */
+        /*             tap_code16(LCTL(KC_Y)); */
+        /*         } else { */
+        /*             tap_code16(LSG(KC_Z)); */
+        /*         } */
+        /*         return false; */
+        /*     } */
         default:
             return true; // Process all other keycodes normally
     }
