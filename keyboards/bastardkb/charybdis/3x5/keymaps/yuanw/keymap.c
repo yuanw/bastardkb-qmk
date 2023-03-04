@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
-
+#include "os_detection.h"
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 #    include "timer.h"
 #endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
@@ -58,7 +58,8 @@ static uint16_t auto_pointer_layer_timer = 0;
 #    define S_D_MOD KC_NO
 #    define SNIPING KC_NO
 #endif // !POINTING_DEVICE_ENABLE
-
+       //
+enum my_keycodes { RDO = SAFE_RANGE, PST, CPY, CUT, UND };
 #define U_RDO SCMD(KC_Z)
 #define U_PST LCMD(KC_V)
 #define U_CPY LCMD(KC_C)
@@ -128,7 +129,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  * base layer to avoid having to layer change mid edit and to enable auto-repeat.
  */
 #define LAYOUT_LAYER_NAVIGATION                                                               \
-    _______________DEAD_HALF_ROW_______________, U_RDO,   U_PST,   U_CPY,   U_CUT,  U_UND, \
+    _______________DEAD_HALF_ROW_______________, RDO,   PST,   CPY,   CUT,  UND, \
     ______________HOME_ROW_GACS_L______________, KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
     _______________DEAD_HALF_ROW_______________,  KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, \
                       XXXXXXX, _______, XXXXXXX,  KC_TAB, KC_BSPC
@@ -278,23 +279,91 @@ void shutdown_user(void) {
 uint16_t COMBO_LEN = 5;
 
 enum combos {
-  FD_B,
-  LU_J,
-  MP_Q,
-  KCOMM_Z,
-  LEFT_TAB,
+    FD_B,
+    LU_J,
+    MP_Q,
+    KCOMM_Z,
+    LEFT_TAB,
 };
-const uint16_t PROGMEM b_combo[] = {KC_F, KC_D, COMBO_END};
-const uint16_t PROGMEM j_combo[] = {KC_L, KC_U, COMBO_END};
-const uint16_t PROGMEM q_combo[] = {KC_M, KC_P, COMBO_END};
-const uint16_t PROGMEM z_combo[] = {KC_K, KC_COMM, COMBO_END};
+const uint16_t PROGMEM b_combo[]    = {KC_F, KC_D, COMBO_END};
+const uint16_t PROGMEM j_combo[]    = {KC_L, KC_U, COMBO_END};
+const uint16_t PROGMEM q_combo[]    = {KC_M, KC_P, COMBO_END};
+const uint16_t PROGMEM z_combo[]    = {KC_K, KC_COMM, COMBO_END};
 const uint16_t PROGMEM left_combo[] = {KC_W, KC_M, COMBO_END};
 
-
 combo_t key_combos[COMBO_COUNT] = {
-  [FD_B] = COMBO(b_combo, KC_B),
-  [LU_J] = COMBO(j_combo, KC_J),
-  [MP_Q] = COMBO(q_combo, KC_Q),
-  [KCOMM_Z] = COMBO(z_combo, KC_Z),
-  [LEFT_TAB] = COMBO(left_combo, KC_TAB),
+    [FD_B] = COMBO(b_combo, KC_B), [LU_J] = COMBO(j_combo, KC_J), [MP_Q] = COMBO(q_combo, KC_Q), [KCOMM_Z] = COMBO(z_combo, KC_Z), [LEFT_TAB] = COMBO(left_combo, KC_TAB),
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case COPY:
+            if (record->event.pressed) {
+                switch (detected_host_os()) {
+                    case OS_UNSURE: // Don't change default layer if unsure.
+                        break;
+                    case OS_MACOS: // On Mac, set default layer to BASE_MAC.
+                    case OS_IOS:
+                        set_single_persistent_default_layer(BASE_MAC);
+                        break;
+                    default: // On Windows and Linux, set to BASE_WIN.
+                        set_single_persistent_default_layer(BASE_WIN);
+                        break;
+                }
+
+                if (isLinux) {
+                    tap_code16(LCTL(KC_C));
+                } else {
+                    tap_code16(LGUI(KC_C));
+                }
+                return false;
+            }
+        case PASTE:
+            if (record->event.pressed) {
+                if (isLinux) {
+                    tap_code16(LCTL(KC_V));
+                } else {
+                    tap_code16(LGUI(KC_V));
+                }
+                return false;
+            }
+        case CUT:
+            if (record->event.pressed) {
+                if (isLinux) {
+                    tap_code16(LCTL(KC_X));
+                } else {
+                    tap_code16(LGUI(KC_X));
+                }
+                return false;
+            }
+        case UNDO:
+            if (record->event.pressed) {
+                if (isLinux) {
+                    tap_code16(LCTL(KC_Z));
+                } else {
+                    tap_code16(LGUI(KC_Z));
+                }
+                return false;
+            }
+        case REDO:
+            if (record->event.pressed) {
+                if (isLinux) {
+                    tap_code16(LCTL(KC_Y));
+                } else {
+                    tap_code16(LSG(KC_Z));
+                }
+                return false;
+            }
+        case SALL:
+            if (record->event.pressed) {
+                if (isLinux) {
+                    tap_code16(LCTL(KC_A));
+                } else {
+                    tap_code16(LGUI(KC_A));
+                }
+                return false;
+            }
+        default:
+            return true; // Process all other keycodes normally
+    }
+}
