@@ -97,8 +97,8 @@ enum my_keycodes { RDO = SAFE_RANGE, PST, CPY, CUT, UND };
  * from the base layer to enable auto-repeat.
  */
 #define LAYOUT_LAYER_FUNCTION                                                                 \
-    _______________DEAD_HALF_ROW_______________, KC_PSCR,   KC_F7,  KC_LCBR,   KC_RCBR, KC_UNDS, \
-    ______________HOME_ROW_GACS_L______________, KC_SLCT,   LAG(KC_1),       LAG(KC_2),       LAG(KC_3),       LAG(KC_4), \
+    _______________DEAD_HALF_ROW_______________, XXXXXXX,   XXXXXXX,  KC_LCBR,   KC_RCBR, KC_UNDS, \
+    ______________HOME_ROW_GACS_L______________, KC_SCRL,   LAG(KC_1),       LAG(KC_2),       LAG(KC_3),       LAG(KC_4), \
     _______________DEAD_HALF_ROW_______________, KC_PAUS,   LSG(KC_1),       LSG(KC_2),       LSG(KC_3),       LSG(KC_4), \
                       XXXXXXX, XXXXXXX, _______, XXXXXXX, KC_TAB
 /**
