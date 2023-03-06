@@ -97,10 +97,10 @@ enum my_keycodes { RDO = SAFE_RANGE, PST, CPY, CUT, UND };
  * from the base layer to enable auto-repeat.
  */
 #define LAYOUT_LAYER_FUNCTION                                                                 \
-    _______________DEAD_HALF_ROW_______________, KC_PSCR,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
+    _______________DEAD_HALF_ROW_______________, KC_PSCR,   KC_F7,  KC_LCBR,   KC_RCBR, KC_UNDS, \
     ______________HOME_ROW_GACS_L______________, KC_SLCT,   LAG(KC_1),       LAG(KC_2),       LAG(KC_3),       LAG(KC_4), \
     _______________DEAD_HALF_ROW_______________, KC_PAUS,   LSG(KC_1),       LSG(KC_2),       LSG(KC_3),       LSG(KC_4), \
-                      XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
+                      XXXXXXX, XXXXXXX, _______, XXXXXXX, KC_TAB
 /**
  * \brief Media layer.
  *
@@ -108,10 +108,10 @@ enum my_keycodes { RDO = SAFE_RANGE, PST, CPY, CUT, UND };
  * symmetrical to accomodate the left- and right-hand trackball.
  */
 #define LAYOUT_LAYER_MEDIA                                                                    \
-    XXXXXXX,RGB_RMOD, RGB_TOG, RGB_MOD, XXXXXXX, XXXXXXX,RGB_RMOD, RGB_TOG, RGB_MOD, XXXXXXX, \
+    XXXXXXX,RGB_RMOD, RGB_TOG, RGB_MOD, XXXXXXX, XXXXXXX,RGB_TOG, KC_LBRC, KC_RBRC, KC_MINS, \
     KC_MPRV, KC_VOLD, KC_MUTE, KC_VOLU, KC_MNXT, XXXXXXX, KC_H, KC_J, KC_K, KC_L, \
     XXXXXXX, XXXXXXX, XXXXXXX,  EE_CLR, QK_BOOT, QK_BOOT,  EE_CLR, XXXXXXX, XXXXXXX, XXXXXXX, \
-                      _______, KC_MPLY, KC_MSTP, KC_MSTP, KC_MPLY
+                      _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_TAB
 
 /** \brief Mouse emulation and pointer functions. */
 #define LAYOUT_LAYER_POINTER                                                                  \
@@ -132,7 +132,7 @@ enum my_keycodes { RDO = SAFE_RANGE, PST, CPY, CUT, UND };
     _______________DEAD_HALF_ROW_______________, RDO,   PST,   CPY,   CUT,  UND, \
     ______________HOME_ROW_GACS_L______________, KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
     _______________DEAD_HALF_ROW_______________,  KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, \
-                      XXXXXXX, _______, XXXXXXX,  KC_TAB, KC_BSPC
+                      XXXXXXX, _______, XXXXXXX,  XXXXXXX, KC_TAB
 
 /**
  * \brief Numeral layout.
