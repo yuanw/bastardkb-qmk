@@ -97,7 +97,7 @@ enum my_keycodes { RDO = SAFE_RANGE, PST, CPY, CUT, UND };
  * from the base layer to enable auto-repeat.
  */
 #define LAYOUT_LAYER_FUNCTION                                                                 \
-    _______________DEAD_HALF_ROW_______________, XXXXXXX,   XXXXXXX,  KC_LCBR,   KC_RCBR, KC_UNDS, \
+    _______________DEAD_HALF_ROW_______________, XXXXXXX,   XXXXXXX,  KC_LCBR,   KC_RCBR,  KC_BSLS, \
     ______________HOME_ROW_GACS_L______________, KC_SCRL,   LAG(KC_1),       LAG(KC_2),       LAG(KC_3),       LAG(KC_4), \
     _______________DEAD_HALF_ROW_______________, KC_PAUS,   LSG(KC_1),       LSG(KC_2),       LSG(KC_3),       LSG(KC_4), \
                       XXXXXXX, XXXXXXX, _______, XXXXXXX, KC_TAB
@@ -108,9 +108,9 @@ enum my_keycodes { RDO = SAFE_RANGE, PST, CPY, CUT, UND };
  * symmetrical to accomodate the left- and right-hand trackball.
  */
 #define LAYOUT_LAYER_MEDIA                                                                    \
-    XXXXXXX,RGB_RMOD, RGB_TOG, RGB_MOD, XXXXXXX, XXXXXXX,RGB_TOG, KC_LBRC, KC_RBRC, KC_MINS, \
+    XXXXXXX,RGB_RMOD, RGB_TOG, RGB_MOD, XXXXXXX, XXXXXXX, KC_V, KC_LBRC, KC_RBRC, KC_BSLS, \
     KC_MPRV, KC_VOLD, KC_MUTE, KC_VOLU, KC_MNXT, XXXXXXX, KC_H, KC_J, KC_K, KC_L, \
-    XXXXXXX, XXXXXXX, XXXXXXX,  EE_CLR, QK_BOOT, QK_BOOT,  EE_CLR, XXXXXXX, XXXXXXX, XXXXXXX, \
+    XXXXXXX, XXXXXXX, XXXXXXX,  EE_CLR, QK_BOOT, QK_BOOT, KC_G, XXXXXXX, XXXXXXX, XXXXXXX, \
                       _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_TAB
 
 /** \brief Mouse emulation and pointer functions. */
@@ -129,7 +129,7 @@ enum my_keycodes { RDO = SAFE_RANGE, PST, CPY, CUT, UND };
  * base layer to avoid having to layer change mid edit and to enable auto-repeat.
  */
 #define LAYOUT_LAYER_NAVIGATION                                                               \
-    _______________DEAD_HALF_ROW_______________, XXXXXXX, XXXXXXX, KC_LPRN,   KC_RPRN,  XXXXXXX\
+    _______________DEAD_HALF_ROW_______________, XXXXXXX, XXXXXXX, KC_LPRN,  KC_RPRN,  KC_PIPE,\
     ______________HOME_ROW_GACS_L______________, KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
     _______________DEAD_HALF_ROW_______________, RDO,   PST,   CPY,   CUT,  UND, \
                       XXXXXXX, _______, XXXXXXX,  XXXXXXX, KC_TAB
