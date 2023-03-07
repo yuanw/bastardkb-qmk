@@ -129,9 +129,9 @@ enum my_keycodes { RDO = SAFE_RANGE, PST, CPY, CUT, UND };
  * base layer to avoid having to layer change mid edit and to enable auto-repeat.
  */
 #define LAYOUT_LAYER_NAVIGATION                                                               \
-    _______________DEAD_HALF_ROW_______________, RDO,   PST,   CPY,   CUT,  UND, \
+    _______________DEAD_HALF_ROW_______________, XXXXXXX, XXXXXXX, KC_LPRN,   KC_RPRN,  XXXXXXX\
     ______________HOME_ROW_GACS_L______________, KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
-    _______________DEAD_HALF_ROW_______________,  KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, \
+    _______________DEAD_HALF_ROW_______________, RDO,   PST,   CPY,   CUT,  UND, \
                       XXXXXXX, _______, XXXXXXX,  XXXXXXX, KC_TAB
 
 /**
