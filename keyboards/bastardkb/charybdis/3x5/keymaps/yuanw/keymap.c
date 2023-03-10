@@ -15,7 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#ifdef OS_DETECTION_ENABLE
 #include "os_detection.h"
+#endif
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 #    include "timer.h"
 #endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
@@ -24,7 +26,7 @@ enum charybdis_keymap_layers {
     LAYER_BASE = 0,
     LAYER_FUNCTION,
     LAYER_NAVIGATION,
-    LAYER_MEDIA,
+    LAYER_MEDIA
     LAYER_POINTER,
     LAYER_NUMERAL,
     LAYER_SYMBOLS,
